@@ -36,7 +36,7 @@ async def tutorial(bot: Client, message: Message):
         text=Txt.FILE_NAME_TXT.format(format_template=format_template),
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup([
-            [InlineKeyboardButton("• ᴏᴡɴᴇʀ", url="https://t.me/cosmic_freak"),
+            [InlineKeyboardButton("• ᴏᴡɴᴇʀ🪆", url="https://t.me/xspes"),
              InlineKeyboardButton("• ᴛᴜᴛᴏʀɪᴀʟ", url="https://t.me/codeflix_bots")]
         ])
     )
@@ -54,7 +54,7 @@ async def get_stats(bot, message):
 
 @Client.on_message(filters.command("broadcast") & filters.user(Config.ADMIN) & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
-    await bot.send_message(Config.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Is Started The Broadcast......")
+    await bot.send_message(Config.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Has Started a Broadcast......")
     all_users = await codeflixbots.get_all_users()
     broadcast_msg = m.reply_to_message
     sts_msg = await m.reply_text("Broadcast Started..!") 
