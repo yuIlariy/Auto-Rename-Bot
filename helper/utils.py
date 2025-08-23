@@ -4,14 +4,98 @@ from pytz import timezone
 from config import Config, Txt 
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import re
+import random
 
 
+# Speed icon selector
+def get_speed_icon(speed_bps):
+    speed_mbps = speed_bps / (1024 * 1024)
+    if speed_mbps < 7:
+        return "🐢"
+    elif speed_mbps < 11:
+        return "🚀"
+    else:
+        return "🛸"
+
+# Footer variants
+THEMED_FOOTERS = {
+    "🐢": [
+        "╰━🐢 Slow & steady wins the rename ━➣",
+        "╰━🧘 Patience is a patching virtue ━➣",
+        "╰━📦 Unboxing at turtle speed ━➣",
+        "╰━🌿 Rename growing organically ━➣",
+        "╰━🪴 Gentle patching in progress ━➣",
+        "╰━🧊 Rename chilling in low gear ━➣",
+        "╰━🐌 Sluggish but steady ━➣",
+        "╰━🧵 Threading bytes with care ━➣",
+        "╰━🪙 Rename crawling byte by byte ━➣",
+        "╰━🧺 Slow basket of bits ━➣",
+        "╰━🪶 Rename floating softly ━➣",
+        "╰━🧸 Cozy patching underway ━➣",
+        "╰━🕯️ Rename lit by patience ━➣",
+        "╰━🫧 Bubble-speed rename ━➣",
+        "╰━🧂 Lightly seasoned rename ━➣",
+        "╰━🧃 Rename sipping bandwidth ━➣",
+        "╰━🫖 Rename brewing slowly ━➣",
+        "╰━🧺 Basket of bytes unfolding ━➣",
+        "╰━🧦 Rename wrapped in comfort ━➣",
+        "╰━🧘‍♂️ Zen rename in motion ━➣"
+    ],
+    "🚀": [
+        "╰━🚀 Rename rocket in motion ━➣",
+        "╰━⚡ Fast patch, clean finish ━➣",
+        "╰━🎯 Target acquired, speed locked ━➣",
+        "╰━🧩 Modular rename at warp speed ━➣",
+        "╰━💨 Rename breezing through ━➣",
+        "╰━🛠️ Precision patching active ━➣",
+        "╰━📡 Rename pinged and patched ━➣",
+        "╰━🧪 Rename chemistry optimized ━➣",
+        "╰━📈 Rename trending upward ━➣",
+        "╰━🧭 Rename locked on course ━➣",
+        "╰━🧰 Rename toolkit deployed ━➣",
+        "╰━🎮 Rename in turbo mode ━➣",
+        "╰━🧠 Rename thinking fast ━➣",
+        "╰━🧤 Rename gripping bytes ━➣",
+        "╰━🧱 Rename stacking clean ━➣",
+        "╰━🧼 Rename polished mid-flight ━➣",
+        "╰━🧯 Rename fireproofed ━➣",
+        "╰━🧞 Rename granting speed wishes ━➣",
+        "╰━🧃 Rename juiced up ━➣",
+        "╰━🧳 Rename packed and moving ━➣"
+    ],
+    "🛸": [
+        "╰━🛸 Rename from another dimension ━➣",
+        "╰━🌌 Ultra-speed patching engaged ━➣",
+        "╰━🧬 Quantum rename sequence ━➣",
+        "╰━💫 Rename transcending limits ━➣",
+        "╰━🪐 Rename orbiting perfection ━➣",
+        "╰━🧠 Rename outsmarting gravity ━➣",
+        "╰━🧿 Rename seeing beyond bytes ━➣",
+        "╰━🧲 Rename magnetized for speed ━➣",
+        "╰━🧪 Rename formula unlocked ━➣",
+        "╰━🧱 Rename warping structure ━➣",
+        "╰━🧞‍♂️ Rename summoned from hyperspace ━➣",
+        "╰━🧤 Rename gripping galaxies ━➣",
+        "╰━🧰 Rename toolkit from the future ━➣",
+        "╰━🧭 Rename navigating wormholes ━➣",
+        "╰━🧼 Rename polished by stardust ━➣",
+        "╰━🧯 Rename fireproofed at light speed ━➣",
+        "╰━🧃 Rename juiced with cosmic energy ━➣",
+        "╰━🧳 Rename packed for interstellar travel ━➣",
+        "╰━🧩 Rename solving galactic puzzles ━➣",
+        "╰━🧠 Rename thinking faster than light ━➣"
+    ]
+}
+
+# Main progress function
 async def progress_for_pyrogram(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 5.00) == 0 or current == total:        
+    if round(diff % 5.00) == 0 or current == total:
         percentage = current * 100 / total
         speed = current / diff
+        speed_icon = get_speed_icon(speed)
+
         elapsed_time = round(diff) * 1000
         time_to_completion = round((total - current) / speed) * 1000
         estimated_total_time = elapsed_time + time_to_completion
@@ -19,24 +103,41 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         elapsed_time = TimeFormatter(milliseconds=elapsed_time)
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
-        progress = "{0}{1}".format(
-            ''.join(["■" for i in range(math.floor(percentage / 5))]),
-            ''.join(["□" for i in range(20 - math.floor(percentage / 5))])
-        )            
-        tmp = progress + Txt.PROGRESS_BAR.format( 
-            round(percentage, 2),
-            humanbytes(current),
-            humanbytes(total),
-            humanbytes(speed),            
-            estimated_total_time if estimated_total_time != '' else "0 s"
+        progress_bar = "{0}{1}".format(
+            ''.join(["▣" for _ in range(math.floor(percentage / 5))]),
+            ''.join(["▢" for _ in range(20 - math.floor(percentage / 5))])
         )
+
+        footer = random.choice(THEMED_FOOTERS.get(speed_icon, ["╰━━━━━━━━━━━━━━━━➣"]))
+
+        progress_template = f"""<b>
+╭━━━━❰ᴘʀᴏɢʀᴇss ʙᴀʀ❱━➣
+
+┃    🗂️ ᴄᴏᴍᴘʟᴇᴛᴇᴅ: {humanbytes(current)}
+
+┃    📦 ᴛᴏᴛᴀʟ ꜱɪᴢᴇ: {humanbytes(total)}
+
+┃    🔋 ꜱᴛᴀᴛᴜꜱ: {round(percentage, 2)}%
+
+┃    {speed_icon} ꜱᴘᴇᴇᴅ: {humanbytes(speed)}/s
+
+┃    ⏰ ᴇᴛᴀ: {estimated_total_time}
+
+{footer}
+</b>"""
+
+        tmp = progress_bar + progress_template
+
         try:
             await message.edit(
-                text=f"{ud_type}\n\n{tmp}",               
-                reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton("• ᴄᴀɴᴄᴇʟ •", callback_data="close")]])                                               
+                text=f"{ud_type}\n\n{tmp}",
+                reply_markup=InlineKeyboardMarkup(
+                    [[InlineKeyboardButton("✖️ 𝙲𝙰𝙽𝙲ᴇʟ ✖️", callback_data="close")]]
+                )
             )
         except:
             pass
+
 
 def humanbytes(size):    
     if not size:
