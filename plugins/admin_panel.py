@@ -45,12 +45,30 @@ async def tutorial(bot: Client, message: Message):
 @Client.on_message(filters.command(["stats", "status"]) & filters.user(Config.ADMIN))
 async def get_stats(bot, message):
     total_users = await codeflixbots.total_users_count()
-    uptime = time.strftime("%Hh%Mm%Ss", time.gmtime(time.time() - bot.uptime))    
+
+    # ⏱️ True uptime calculation
+    elapsed = int(time.time() - bot.uptime)
+    days, rem = divmod(elapsed, 86400)
+    hours, rem = divmod(rem, 3600)
+    minutes, seconds = divmod(rem, 60)
+    uptime = f"{days}d {hours}h {minutes}m {seconds}s"
+
+    # 🐌 Ping calculation
     start_t = time.time()
-    st = await message.reply('**Accessing The Details.....**')    
+    st = await message.reply("**Accessing The Details.....**")
     end_t = time.time()
     time_taken_s = (end_t - start_t) * 1000
-    await st.edit(text=f"**--Bot Status--** \n\n**⌚️ Bot Uptime :** {uptime} \n**🐌 Current Ping :** `{time_taken_s:.3f} ms` \n**👭 Total Users :** `{total_users}`")
+
+    # 📊 Final status message
+    await st.edit(
+        text=(
+            "**--📜 Bot Status--**\n\n"
+            f"**⌚️ Bot Uptime :** `{uptime}`\n"
+            f"**🐌 Current Ping :** `{time_taken_s:.3f} ms`\n"
+            f"**👭 Total Users :** `{total_users}`"
+        )
+    )
+
 
 @Client.on_message(filters.command("broadcast") & filters.user(Config.ADMIN) & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
