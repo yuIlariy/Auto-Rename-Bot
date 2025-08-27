@@ -37,7 +37,7 @@ async def tutorial(bot: Client, message: Message):
         disable_web_page_preview=True,
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton("• ᴏᴡɴᴇʀ🪆", url="https://t.me/xspes"),
-             InlineKeyboardButton("• ᴛᴜᴛᴏʀɪᴀʟ", url="https://t.me/codeflix_bots")]
+             InlineKeyboardButton("• ᴛᴜᴛᴏʀɪᴀʟ", url="https://t.me/OtherBs")]
         ])
     )
 
