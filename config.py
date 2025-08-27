@@ -154,7 +154,7 @@ Pʀɪᴄɪɴɢ:
 ᴀɴᴅ ᴜsɪɴɢ [ᴍᴏɴɢᴏ](https://cloud.mongodb.com) ᴀs ᴅᴀᴛᴀʙᴀsᴇ.
 
 
-<b>ʜᴇʀᴇ ɪs ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ(ᴍᴀɪɴ) :</b> [ɢɪᴛʜᴜʙ](https://github.com/yuIlariy/Auto-Rename-Bot)
+<b>ʜᴇʀᴇ ɪs ᴍʏ sᴏᴜʀᴄᴇ ᴄᴏᴅᴇ(ᴍᴀɪɴ) :</b> [ɢɪᴛʜᴜʙ](https://github.com/Codeflix-Bots/Auto-Rename-Bot)
 <b>ᴍᴏᴅɪꜰɪᴇᴅ ʀᴇᴘᴏ(ꜰᴏʀᴋ) :</b> [ᴅᴀᴡɢ](https://github.com/yuIlariy/Auto-Rename-Bot)
 
 
