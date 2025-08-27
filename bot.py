@@ -55,18 +55,22 @@ class Bot(Client):
                 curr = datetime.now(timezone("Africa/Nairobi"))
                 date = curr.strftime('%d %B, %Y')
                 time_str = curr.strftime('%I:%M:%S %p')
-                
+
+                # Get bot ID
+                bot_id = me.id
+
                 # Send the message with the photo
                 await self.send_photo(
                     chat_id=chat_id,
                     photo=Config.START_PIC,
                     caption=(
                         "**ᴀɴʏᴀ ɪs ʀᴇsᴛᴀʀᴛᴇᴅ ᴀɢᴀɪɴ  !**\n\n"
-                        f"ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ​: `{uptime_string}`"
+                        f"ɪ ᴅɪᴅɴ'ᴛ sʟᴇᴘᴛ sɪɴᴄᴇ: `{uptime_string}`"
                     ),
                     reply_markup=InlineKeyboardMarkup(
                         [[
-                            InlineKeyboardButton("ᴜᴘᴅᴀᴛᴇs", url="https://t.me/OtherBs")
+                            InlineKeyboardButton("• ᴜᴘᴅᴀᴛᴇs", url="https://t.me/OtherBs"),
+                            InlineKeyboardButton(f"ᴄʜᴇᴄᴋ ʙᴏᴛ • ID:{bot_id}", url=f"https://t.me/{me.username}")
                         ]]
                     )
                 )
@@ -75,3 +79,5 @@ class Bot(Client):
                 print(f"Failed to send message in chat {chat_id}: {e}")
 
 Bot().run()
+
+
