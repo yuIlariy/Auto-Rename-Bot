@@ -70,7 +70,7 @@ class Bot(Client):
                     reply_markup=InlineKeyboardMarkup(
                         [[
                             InlineKeyboardButton("• ᴜᴘᴅᴀᴛᴇs", url="https://t.me/OtherBs"),
-                            InlineKeyboardButton(f"ᴄʜᴇᴄᴋ ʙᴏᴛ • ID:{bot_id}", url=f"https://t.me/{me.username}")
+                            InlineKeyboardButton(f"ᴄʜᴇᴄᴋ ʙᴏᴛ •", url=f"https://t.me/{me.username}")
                         ]]
                     )
                 )
