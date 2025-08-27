@@ -10,17 +10,17 @@ class Config(object):
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "736532225-w") 
 
     # database config
-    DB_NAME = os.environ.get("DB_NAME","Yato")     
+    DB_NAME = os.environ.get("DB_NAME","Autos")     
     DB_URL  = os.environ.get("DB_URL","mongodb")
-    PORT = os.environ.get("PORT", "8080")
+    PORT = os.environ.get("PORT", "8280")
  
     # other configs
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "https://graph.org/file/29a3acbbab9de5f45a5fe.jpg")
-    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6497757690').split()]
-    FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', 'codeflix_bots').split(',')
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001868871195"))
-    DUMP_CHANNEL = int(os.environ.get("DUMP_CHANNEL", "-1001868871195"))
+    ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '6318135266').split()]
+    FORCE_SUB_CHANNELS = os.environ.get('FORCE_SUB_CHANNELS', 'modstorexd').split(',')
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1001925329161"))
+    DUMP_CHANNEL = int(os.environ.get("DUMP_CHANNEL", "-1002790858154"))
     
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
