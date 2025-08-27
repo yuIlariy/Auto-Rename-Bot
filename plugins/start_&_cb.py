@@ -161,7 +161,7 @@ async def cb_handler(client, query: CallbackQuery):
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([
                 [InlineKeyboardButton("• sᴜᴘᴘᴏʀᴛ", url='https://t.me/CodeflixSupport'), InlineKeyboardButton("ᴄᴏᴍᴍᴀɴᴅs •", callback_data="help")],
-                [InlineKeyboardButton("• ᴅᴇᴠᴇʟᴏᴘᴇʀ", url='https://t.me/OtherBs'), InlineKeyboardButton("ɴᴇᴛᴡᴏʀᴋ •", url='https://t.me/OtherBs')],
+                [InlineKeyboardButton("• ᴅᴀᴡɢ", url='https://t.me/xspes'), InlineKeyboardButton("ɴᴇᴛᴡᴏʀᴋ •", url='https://t.me/OtherBs')],
                 [InlineKeyboardButton("• ʙᴀᴄᴋ •", callback_data="home")]
             ])
         )
